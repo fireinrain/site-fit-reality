@@ -10,6 +10,7 @@ func main() {
 	// Replace these with the hostname and port of the server you want to check
 	hostname := "dl.google.com"
 	port := "443"
+	url := fmt.Sprintf("https://%s:%s/", hostname, port)
 
 	tlsConfig := &tls.Config{
 		// Only enable TLSv1.3
@@ -25,7 +26,7 @@ func main() {
 	}
 
 	// Make a request to the server
-	resp, err := client.Get(fmt.Sprintf("https://%s:%s/", hostname, port))
+	resp, err := client.Get(url)
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
@@ -41,13 +42,13 @@ func main() {
 
 	// Check if the server supports TLSv1.3
 	if resp.TLS.Version == tls.VersionTLS13 {
-		fmt.Println("Server supports TLSv1.3")
+		fmt.Println("TLSv1.3 is supported")
 	} else {
-		fmt.Println("Server does not support TLSv1.3")
+		fmt.Println("TLSv1.3 is not supported")
 	}
 
 	client = &http.Client{}
-	resp, err = client.Get(fmt.Sprintf("https://%s:%s/", hostname, port))
+	resp, err = client.Get(url)
 
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)
