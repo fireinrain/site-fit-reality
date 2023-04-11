@@ -9,6 +9,10 @@ import (
 	"strings"
 )
 
+//https://www.yoyone.com/world.asp
+//http://www.abcdao.com/yazhou/riben/
+//http://site.nihaowang.com/
+
 const (
 	Asia         = "亚洲"
 	Africa       = "非洲"
@@ -58,7 +62,7 @@ func (w *World68Spider) GetWebsiteUrl() []Website {
 	}
 
 	// 设置 User-Agent 头部字段
-	req.Header.Set("User-Agent", "My Custom User Agent")
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36")
 
 	// 发送 HTTP 请求并获取响应
 	client := http.DefaultClient
